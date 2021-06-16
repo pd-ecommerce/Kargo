@@ -1,5 +1,5 @@
 {
-  "name": "teknomavi/kargo",
+  "name": "pd-ecommerce/kargo",
   "type": "library",
   "description": "Türkiye'deki kargo firmaları için merkezi entegrasyon kütüphanesi",
   "minimum-stability": "stable",
@@ -30,6 +30,11 @@
       "name": "GoktugOzturk",
       "email": "goktug.ozturk@teknomavi.com",
       "homepage": "http://www.teknomavi.com"
+    },
+    {
+      "name": "Serkan Boztepe",
+      "email": "serkanboztepe02@gmail.com",
+      "homepage": "https://www.s-coder.com.tr"
     }
   ],
   "autoload": {
