@@ -934,11 +934,11 @@ class Mapper
     {
         $slug = Text::createSlug($cityName);
         if (!array_key_exists($slug, self::$cityMap)) {
-            Log::debug($cityName ."mevcut şehir listesinde bulunamadı");
+            Log::debug($cityName ." mevcut şehir listesinde bulunamadı. Lütfen adres bilgisini güncelleyin!");
             //throw new \InvalidArgumentException("$cityName mevcut şehir listesinde bulunamadı");
             return [
                 "status" => false,
-                "data" => $cityName ."mevcut şehir listesinde bulunamadı"
+                "data" => $cityName ." mevcut şehir listesinde bulunamadı. Lütfen adres bilgisini güncelleyin!"
             ];
         }
         return [
@@ -959,20 +959,20 @@ class Mapper
     {
         $cityCode = 'city' . $cityId;
         if (!array_key_exists($cityCode, self::$townMap)) {
-            Log::debug($cityId ."no'lu şehir mevcut bölge listesinde bulunamadı");
+            Log::debug($areaName ." semtinde seçtiğiniz şehir bulunamadı. Lütfen adres bilgisini güncelleyin!");
             //throw new \InvalidArgumentException("$cityId no'lu şehir mevcut bölge listesinde bulunamadı");
             return [
                 "status" => false,
-                "data" => $cityId ."no'lu şehir mevcut bölge listesinde bulunamadı"
+                "data" => $areaName ." semtinde seçtiğiniz şehir bulunamadı. Lütfen adres bilgisini güncelleyin!"
             ];
         }
         $slug = Text::createSlug($areaName);
         if (!array_key_exists($slug, self::$townMap[$cityCode])) {
-            Log::debug($areaName .", " .$cityId ."no'lu şehire ait mevcut bölge listesinde bulunamadı");
+            Log::debug($areaName .", " . "adında bir semt bulunamadı. Lütfen adres bilgisini güncelleyin!");
             //throw new \InvalidArgumentException("$areaName, $cityId no'lu şehire ait mevcut bölge listesinde bulunamadı");
             return [
                 "status" => false,
-                "data" => $areaName .", " .$cityId ."no'lu şehire ait mevcut bölge listesinde bulunamadı"
+                "data" => $areaName .", " . "adında bir semt bulunamadı. Lütfen adres bilgisini güncelleyin!"
             ];
         }
         return [
