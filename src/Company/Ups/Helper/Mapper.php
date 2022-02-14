@@ -934,8 +934,7 @@ class Mapper
     {
         $slug = Text::createSlug($cityName);
         if (!array_key_exists($slug, self::$cityMap)) {
-            Log::debug($cityName ."mevcut şehir listesinde bulunamadı");
-            //throw new \InvalidArgumentException("$cityName mevcut şehir listesinde bulunamadı");
+            throw new \InvalidArgumentException("$cityName mevcut şehir listesinde bulunamadı");
         }
 
         return self::$cityMap[$slug];
@@ -953,13 +952,11 @@ class Mapper
     {
         $cityCode = 'city' . $cityId;
         if (!array_key_exists($cityCode, self::$townMap)) {
-            Log::debug($cityId ."no'lu şehir mevcut bölge listesinde bulunamadı");
-            //throw new \InvalidArgumentException("$cityId no'lu şehir mevcut bölge listesinde bulunamadı");
+            throw new \InvalidArgumentException("$cityId no'lu şehir mevcut bölge listesinde bulunamadı");
         }
         $slug = Text::createSlug($areaName);
         if (!array_key_exists($slug, self::$townMap[$cityCode])) {
-            Log::debug($areaName .", " .$cityId ."no'lu şehire ait mevcut bölge listesinde bulunamadı");
-            //throw new \InvalidArgumentException("$areaName, $cityId no'lu şehire ait mevcut bölge listesinde bulunamadı");
+            throw new \InvalidArgumentException("$areaName, $cityId no'lu şehire ait mevcut bölge listesinde bulunamadı");
         }
 
         return self::$townMap[$cityCode][$slug];
