@@ -930,14 +930,21 @@ class Mapper
      *
      * @return int
      */
-    public static function getCityCode(string $cityName): int
+    public static function getCityCode(string $cityName): array
     {
         $slug = Text::createSlug($cityName);
         if (!array_key_exists($slug, self::$cityMap)) {
-            throw new \InvalidArgumentException("$cityName mevcut şehir listesinde bulunamadı");
+            Log::debug($cityName ."mevcut şehir listesinde bulunamadı");
+            //throw new \InvalidArgumentException("$cityName mevcut şehir listesinde bulunamadı");
+            return [
+                "status" => false,
+                "data" => $cityName ."mevcut şehir listesinde bulunamadı"
+            ];
         }
-
-        return self::$cityMap[$slug];
+        return [
+            "status" => true,
+            "data" => self::$cityMap[$slug]
+        ];
     }
 
     /**
@@ -948,17 +955,29 @@ class Mapper
      *
      * @return int
      */
-    public static function getAreaCode(int $cityId, string $areaName): int
+    public static function getAreaCode(int $cityId, string $areaName): array
     {
         $cityCode = 'city' . $cityId;
         if (!array_key_exists($cityCode, self::$townMap)) {
-            throw new \InvalidArgumentException("$cityId no'lu şehir mevcut bölge listesinde bulunamadı");
+            Log::debug($cityId ."no'lu şehir mevcut bölge listesinde bulunamadı");
+            //throw new \InvalidArgumentException("$cityId no'lu şehir mevcut bölge listesinde bulunamadı");
+            return [
+                "status" => false,
+                "data" => $cityId ."no'lu şehir mevcut bölge listesinde bulunamadı"
+            ];
         }
         $slug = Text::createSlug($areaName);
         if (!array_key_exists($slug, self::$townMap[$cityCode])) {
-            throw new \InvalidArgumentException("$areaName, $cityId no'lu şehire ait mevcut bölge listesinde bulunamadı");
+            Log::debug($areaName .", " .$cityId ."no'lu şehire ait mevcut bölge listesinde bulunamadı");
+            //throw new \InvalidArgumentException("$areaName, $cityId no'lu şehire ait mevcut bölge listesinde bulunamadı");
+            return [
+                "status" => false,
+                "data" => $areaName .", " .$cityId ."no'lu şehire ait mevcut bölge listesinde bulunamadı"
+            ];
         }
-
-        return self::$townMap[$cityCode][$slug];
+        return [
+            "status" => true,
+            "data" => self::$townMap[$cityCode][$slug]
+        ];
     }
 }

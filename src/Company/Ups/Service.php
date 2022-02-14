@@ -90,11 +90,29 @@ class Service extends ServiceAbstract implements ServiceInterface
 
     public function addPackage(Package $package)
     {
-        $shipperCityCode = Mapper::getCityCode($package->getShipperCity());
-        $shipperTownCode = Mapper::getAreaCode($shipperCityCode, $package->getShipperTown());
+        $shipperCityResult = Mapper::getCityCode($package->getShipperCity());
+        if (!$shipperCityResult["status"]) {
+            return $shipperCityResult;
+        }
+        $shipperCityCode = $shipperCityResult["data"];
 
-        $consigneeCityCode = Mapper::getCityCode($package->getConsigneeCity());
-        $consigneeTownCode = Mapper::getAreaCode($consigneeCityCode, $package->getConsigneeTown());
+        $shipperTownResult = Mapper::getAreaCode($shipperCityCode, $package->getShipperTown());
+        if (!$shipperTownResult["status"]) {
+            return $shipperTownResult;
+        }
+        $shipperTownCode = $shipperTownResult["data"];
+
+        $consigneeCityResult = Mapper::getCityCode($package->getConsigneeCity());
+        if (!$consigneeCityResult["status"]) {
+            return $consigneeCityResult;
+        }
+        $consigneeCityCode = $consigneeCityResult["data"];
+
+        $consigneeTownResult = Mapper::getAreaCode($consigneeCityCode, $package->getConsigneeTown());
+        if (!$consigneeTownResult["status"]) {
+            return $consigneeTownResult;
+        }
+        $consigneeTownCode = $consigneeTownResult["data"];
 
         $shipmentType = new ShipmentInfo_Type2();
         $shipmentType
