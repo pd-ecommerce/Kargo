@@ -1,6 +1,7 @@
 <?php
 namespace Teknomavi\Kargo\Company\Ups\Helper;
 
+use Illuminate\Support\Facades\Log;
 use Teknomavi\Common\Text;
 
 class Mapper
@@ -933,7 +934,8 @@ class Mapper
     {
         $slug = Text::createSlug($cityName);
         if (!array_key_exists($slug, self::$cityMap)) {
-            throw new \InvalidArgumentException("$cityName mevcut şehir listesinde bulunamadı");
+            Log::debug($cityName ."mevcut şehir listesinde bulunamadı");
+            //throw new \InvalidArgumentException("$cityName mevcut şehir listesinde bulunamadı");
         }
 
         return self::$cityMap[$slug];
@@ -951,11 +953,13 @@ class Mapper
     {
         $cityCode = 'city' . $cityId;
         if (!array_key_exists($cityCode, self::$townMap)) {
-            throw new \InvalidArgumentException("$cityId no'lu şehir mevcut bölge listesinde bulunamadı");
+            Log::debug($cityId ."no'lu şehir mevcut bölge listesinde bulunamadı");
+            //throw new \InvalidArgumentException("$cityId no'lu şehir mevcut bölge listesinde bulunamadı");
         }
         $slug = Text::createSlug($areaName);
         if (!array_key_exists($slug, self::$townMap[$cityCode])) {
-            throw new \InvalidArgumentException("$areaName, $cityId no'lu şehire ait mevcut bölge listesinde bulunamadı");
+            Log::debug($areaName .", " .$cityId ."no'lu şehire ait mevcut bölge listesinde bulunamadı");
+            //throw new \InvalidArgumentException("$areaName, $cityId no'lu şehire ait mevcut bölge listesinde bulunamadı");
         }
 
         return self::$townMap[$cityCode][$slug];
