@@ -25,7 +25,7 @@
     "php": ">= 7.1",
     "ext-soap": "*",
     "symfony/options-resolver": "<6.0",
-    "pd-ecommerce/common": "^2.2.1",
+    "pd-ecommerce/common": "^2.2.2",
     "picqer/php-barcode-generator": "^0.3"
   },
   "require-dev": {
