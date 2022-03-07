@@ -4,6 +4,14 @@
   "description": "Türkiye'deki kargo firmaları için merkezi entegrasyon kütüphanesi",
   "minimum-stability": "stable",
   "license": "MIT",
+  "repositories": [
+    {
+      "name": "pd-ecommerce/common",
+      "type": "vcs",
+      "version": "master",
+      "url": "https://github.com/pd-ecommerce/common.git"
+    }
+  ],
   "keywords": [
     "kargo",
     "teslimat",
@@ -17,7 +25,7 @@
     "php": ">= 7.1",
     "ext-soap": "*",
     "symfony/options-resolver": "<6.0",
-    "teknomavi/common": "~2.2",
+    "pd-ecommerce/common": "^2.2.1",
     "picqer/php-barcode-generator": "^0.3"
   },
   "require-dev": {
