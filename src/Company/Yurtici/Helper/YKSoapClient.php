@@ -85,7 +85,7 @@ class YKSoapClient
             'wsLanguage'        => self::$language,
             'keys'              => $cargoKey,
             'keyType'           => 0, // Fatura/Irsaliye anahtari ile de gonderilebilir fakat referans numarasi baz alindi
-            'addHistoricalData' => false,
+            'addHistoricalData' => true,
             'onlyTracking'      => false,
         ];
         $_sclient = new \SoapClient($this->url);
