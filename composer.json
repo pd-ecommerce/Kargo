@@ -26,7 +26,7 @@
     "ext-soap": "*",
     "symfony/options-resolver": "<6.0",
     "pd-ecommerce/common": "^2.2.2",
-    "picqer/php-barcode-generator": "^0.3"
+    "picqer/php-barcode-generator": "^v2.2.4"
   },
   "require-dev": {
     "phpunit/phpunit": "~7.4.0|~9.0",
